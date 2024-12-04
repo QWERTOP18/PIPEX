@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:25:08 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/05 00:45:59 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/05 01:40:15 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
+
+// debug
+#include <stdlib.h>
+#include <string.h>
 
 int	main(int argc, char **argv, char **env)
 {
@@ -23,12 +27,11 @@ int	main(int argc, char **argv, char **env)
 	./pipex file1 cmd1 cmd2 file2
 	*/
 
-	if (argc < 4)
+	if (argc < 5)
 	{
 		printf("Usage:./pipex file1 cmd1 cmd2 file2\n");
 		return (1);
 	}
-
 	// to do make wrapper func of open
 	fd1 = open(argv[1], O_RDWR);
 	fd2 = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
