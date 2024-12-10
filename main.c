@@ -16,7 +16,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #define PATH 5
-#include "libft.h"
+// #include "libft.h"
 
 // debug
 #include <stdlib.h>
