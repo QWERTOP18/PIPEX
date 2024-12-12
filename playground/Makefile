@@ -12,8 +12,8 @@ libft:
 	@make -C ../libft/
 
 $(NAME): $(OBJ)
-	@make -C libft
-	$(CC) $^ -Llibft -lft -o $(NAME)
+	@make -C ../libft
+	$(CC) $^ -L../libft -lft -o $(NAME)
 
 %.o: %.c
 	$(CC) -Iincludes -I../libft -c $< -o $@

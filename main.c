@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:25:08 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/09 20:12:56 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:07:35 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv, char **env)
 {
 	int		pipe[2];
 	char	**absolute_path;
-	char	*av[] = {"ls", "-2", NULL};
+	char	*av[] = {"ls", "-l", NULL};
 	pid_t	pid;
 
 	/*
