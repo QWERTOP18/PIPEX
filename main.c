@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:25:08 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/05 03:51:33 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/09 20:12:56 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,50 @@ char	**fetch_absolute_path(char **env)
 	return (NULL);
 }
 
+// int	main(int argc, char **argv, char **env)
+// {
+// 	int		pipe[2];
+// 	char	**absolute_path;
+
+// 	absolute_path = fetch_absolute_path(env);
+// 	if (!absolute_path)
+// 	{
+// 		printf("Error: PATH variable not found in environment.\n");
+// 		return (1);
+// 	}
+// }
+
+#ifndef SAMPLE
 int	main(int argc, char **argv, char **env)
 {
-	int fd_from;
-	int fd_via;
-	int fd_to;
+	int		pipe[2];
+	char	**absolute_path;
+	char	*av[] = {"ls", "-2", NULL};
+	pid_t	pid;
+
 	/*
 	./pipex file1 cmd1 cmd2 file2
 	*/
-	printf("%d/n", ft_isalpha('1'));
 	printf("%s\n\n", __DATE__);
 	// if (argc < 5)
 	// {
 	// 	printf("Usage:./pipex file1 cmd1 cmd2 file2\n");
 	// 	return (1);
 	// }
-	char **absolute_path = fetch_absolute_path(env);
-	char *av[] = {"ls", "-l", NULL};
-	pid_t pid;
+	absolute_path = fetch_absolute_path(env);
 	pid = fork();
 	if (pid == 0)
 	{
 		printf("This is the child process!\n");
-		printf("%d\n", execve("/bin/ls", av, env));
-		perror("execv:");
+		if (access("/bin/ls", X_OK) == 0)
+		{
+			printf("%d\n", execve("/bin/ls", av, env));
+			perror("execve:");
+		}
+		else
+		{
+			perror("access:");
+		}
 	}
 	else
 	{
@@ -80,3 +100,4 @@ int	main(int argc, char **argv, char **env)
 	// }
 	return (0);
 }
+#endif
