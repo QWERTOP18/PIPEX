@@ -37,6 +37,7 @@ int	dup_stdout(int fd_fileout)
 	return (0);
 }
 
+#ifndef FILE_TEST
 int	main(int argc, char const **argv, char **env)
 {
 	int	pipefd[2];
@@ -50,11 +51,11 @@ int	main(int argc, char const **argv, char **env)
 	入力ファイルをSTDINにdup OK
 	出力ファイルはO_TRUNCで初期化（UNLINLK)もしくはO_APPENDで追加
 	*/
-	fd_fileout = open(argv[argc - 1], O_WRONLY | O_APPEND | O_CREAT, 0666);
-	pipe(pipefd); // fd[1] write & fd[0] read
+	fd_fileout = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0666);
 	dup_stdin(fd_filein);
+	pipe(pipefd); // fd[1] write & fd[0] read
 	dup_stdout(pipefd[1]);
-	handle_exec("ls -l", env);
+	handle_exec("cat", env);
 	// read_file(pipefd[0]);
 	dup_stdin(pipefd[0]);
 	dup_stdout(fd_fileout);
@@ -63,3 +64,4 @@ int	main(int argc, char const **argv, char **env)
 	close(pipefd[1]);
 	return (0);
 }
+#endif
