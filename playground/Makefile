@@ -1,6 +1,6 @@
 NAME = pipex
 
-SRC = test.c
+SRC = file_test.c execve.c
 OBJ := $(SRC:%.c=%.o)
 
 CC = cc
@@ -32,6 +32,9 @@ debug: $(OBJ)
 	$(CC) $(CCFLAGS) -fsanitize=address -Llibft -lft $^ -o $(NAME)
 
 test: $(OBJ)
-	$(CC) $^ -Llibft -lft -o $(NAME)
+	./pipex "ls -l ../" "ls -l ../"
+
+duptest: $(OBJ)
+	./pipex read.txt write.txt
 
 .PHONY: libft test
