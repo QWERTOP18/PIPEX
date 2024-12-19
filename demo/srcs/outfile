@@ -1,6 +1,0 @@
-total 128
--rw-r--r--  1 yui  staff      3 12 10 19:15 infile
--rw-r--r--  1 yui  staff   2108 12 10 19:17 main.c
--rw-r--r--  1 yui  staff      0 12 10 19:17 outfile
--rwxr-xr-x  1 yui  staff  50680 12 10 19:17 pipex
--rw-r--r--  1 yui  staff    177 12 10 18:30 pipex.h

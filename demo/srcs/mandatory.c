@@ -4,12 +4,23 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
+#define WR 1
+#define RD 0
+// typedef struct s_fds
+// {
+//     int pipefds[2];
+//     int fdin;
+//     int fdout;
+
+// } t_fds;
+
 #define LOG printf("%s: %d\n", __func__, __LINE__);
 
 char *cmd1path = "/bin/cat";
 char *cmd1args[] = { "cat", NULL };
-char *cmd2path = "/bin/ls";
-char *cmd2args[] = { "ls", "-l", NULL };
+char *cmd2path = "/usr/bin/grep";
+char *cmd2args[] = { "grep", "a", NULL };
+
 
 int main(int argc, char **argv)
 {
@@ -51,7 +62,7 @@ int main(int argc, char **argv)
     if (pid == 0) // Child process for cmd1
     {
         // Redirect stdin to infile
-        dup2(infilefd, STDIN_FILENO);
+        dup2(infilefd,STDIN_FILENO);
         close(infilefd);
 
         // Redirect stdout to pipe write end
