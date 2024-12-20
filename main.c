@@ -101,6 +101,7 @@ int w_absolute_path(char **env, char *path, int mode)
 	
 }
 
+char **xsplit(char *str, char sep)
 
 int w_parse(t_cmd *cmds[], char **argv, char **env)
 {
