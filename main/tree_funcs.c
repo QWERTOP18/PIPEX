@@ -1,14 +1,7 @@
 #include "ft_system.h"
 
 
-void consume_pipe(int pipefds[],t_info *info)
-{
-    if(pipe(pipefds))
-    {
-        perror("pipe");
-        system_exit(info, errno);
-    }
-}
+
 
 void u_consume_node(t_node *curr)
 {

@@ -1,6 +1,7 @@
 #ifndef FT_SYSTEM_H
 #define FT_SYSTEM_H
 #include <unistd.h>
+#include <fcntl.h>
 #include <errno.h>
 #include <stdio.h>
 #include "../libft/libft.h"
@@ -15,6 +16,7 @@ typedef enum e_status
 
 typedef struct s_info
 {
+    t_status status;
     t_btree *root;
     char **env_path;
 }t_info;
@@ -22,20 +24,21 @@ typedef struct s_info
 typedef enum e_type
 {
     TOKEN_CMD,
-    TOKEN_REDIR_IN,
-    TOKEN_REDIR_OUT,
-    TOKEN_REDIR_APPEND,
     TOKEN_PIPE,
-    TOKEN_ARGS,
     TOKEN_EOF,
+    // TOKEN_ARGS,
+    TOKEN_FILEIN,
+    TOKEN_FILEOUT,
+
 } t_type;
 
-typedef struct s_node
-{
+
+typedef struct s_node {
     t_type type;
-    union u_val {
-        char  *args;
-        int    pipefds[2];
-};
+    union {
+        char *args;
+        int pipefds[2];
+    } u_val;
 } t_node;
+
 #endif
