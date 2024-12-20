@@ -2,14 +2,18 @@
 
 
 #include <string.h>//debug
+
+t_btree *node_item_new(t_type type, )
+{
+}
+
+
+
+
 void ft_system_exit(t_info *info,int status)
 {
-    // void astclear(void *data)
-    // {
-    //     free(data);
-    // }
     strs_free(info->env_path);
-   // ft_btreeclear(info->root, ast_clear);
+    ft_btree_clear(info->root, );
     exit(status);
 }
 
@@ -19,7 +23,7 @@ t_info *system_init(char **env)
     if(!info)
         exit(E_ALLOCATE);
     memset(info,0,sizeof(t_info));
-    info->root = ft_btreenew();
+    info->root = btree_create_node(NULL);
     while (env && *env)
     {
         if (strncmp(*env,"PATH=",strlen("PATH="))==0)
