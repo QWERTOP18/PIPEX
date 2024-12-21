@@ -4,7 +4,9 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <stdio.h>
-#include "../libft/libft.h"
+#include <string.h>
+#include <limits.h>
+#include "../util/libft/libft.h"
 
 typedef enum e_status
 {
@@ -18,23 +20,24 @@ typedef struct s_info
 {
     t_status status;
     t_btree *root;
+    char **env;
     char **env_path;
+    void (*__exit)(void *, int);
 }t_info;
 
-typedef enum e_type
-{
-    TOKEN_CMD,
-    TOKEN_PIPE,
-    TOKEN_EOF,
-    // TOKEN_ARGS,
-    TOKEN_FILEIN,
-    TOKEN_FILEOUT,
 
-} t_type;
 
 
 typedef struct s_node {
-    t_type type;
+    // t_type type;
+    enum 
+    {
+        TOKEN_CMD,
+        TOKEN_PIPE,
+        TOKEN_EOF,
+        // TOKEN_ARGS,
+        TOKEN_REDIRECT,
+    } e_type;
     union {
         char *args;
         int pipefds[2];
