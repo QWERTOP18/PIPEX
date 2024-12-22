@@ -1,0 +1,11 @@
+total 240
+-rwxr-xr-x  1 yui  staff  50680 12 19 17:21 a.out
+-rw-r--r--  1 yui  staff     19 12 19 17:19 infile
+-rw-r--r--@ 1 yui  staff   2271 12 19 17:22 mandatory.c
+-rw-r--r--  1 yui  staff   2310 12 10 20:42 multipipe.c
+-rw-r--r--  1 yui  staff      0 12 19 17:34 out
+-rw-r--r--  1 yui  staff      0 12 19 17:34 out1
+-rw-r--r--  1 yui  staff      0 12 19 17:34 out2
+-rw-r--r--  1 yui  staff      0 12 19 15:16 outfile
+-rwxr-xr-x  1 yui  staff  50680 12 10 19:39 pipex
+-rw-r--r--  1 yui  staff    177 12 10 18:30 pipex.h
