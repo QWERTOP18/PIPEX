@@ -6,7 +6,11 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:25:08 by ymizukam          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/12/19 22:32:43 by ymizukam         ###   ########.fr       */
+=======
+/*   Updated: 2024/12/09 20:12:56 by ymizukam         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +21,16 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #define PATH 5
-#define MAX_PATH 1024
-#define MAX_CMD 1024
-// #include "libft.h"
+#include "libft.h"
 
 // debug
 #include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct s_btree
+char	**fetch_absolute_path(char **env)
 {
+<<<<<<< HEAD
 	struct s_btree	*left;
 	struct s_btree	*right;
 	void			*item;
@@ -78,6 +81,9 @@ typedef struct s_item
 int	fetch_absolute_path(char path[], char **env, int mode)
 {
 	static char	path_val[MAX_PATH] = {0};
+=======
+	char	*path;
+>>>>>>> refs/remotes/origin/master
 
 	while (*env)
 	{
@@ -88,6 +94,7 @@ int	fetch_absolute_path(char path[], char **env, int mode)
 		}
 		env++;
 	}
+<<<<<<< HEAD
 }
 
 int	w_absolute_path(char **env, char *path, int mode)
@@ -124,14 +131,47 @@ int	main(int argc, char **argv, char **env)
 	t_cmd	cmds[MAX_CMD];
 	pid_t	pid;
 
+=======
+	return (NULL);
+}
+
+// int	main(int argc, char **argv, char **env)
+// {
+// 	int		pipe[2];
+// 	char	**absolute_path;
+
+// 	absolute_path = fetch_absolute_path(env);
+// 	if (!absolute_path)
+// 	{
+// 		printf("Error: PATH variable not found in environment.\n");
+// 		return (1);
+// 	}
+// }
+
+#ifndef SAMPLE
+int	main(int argc, char **argv, char **env)
+{
+	int		pipe[2];
+	char	**absolute_path;
+	char	*av[] = {"ls", "-2", NULL};
+	pid_t	pid;
+
+	/*
+	./pipex file1 cmd1 cmd2 file2
+	*/
+>>>>>>> refs/remotes/origin/master
 	printf("%s\n\n", __DATE__);
 	// if (argc < 5)
 	// {
 	// 	printf("Usage:./pipex file1 cmd1 cmd2 file2\n");
 	// 	return (1);
 	// }
+<<<<<<< HEAD
 	// char **absolute_path = fetch_absolute_path(env);
 	w_parse(&cmds, &argv[1], env);
+=======
+	absolute_path = fetch_absolute_path(env);
+>>>>>>> refs/remotes/origin/master
 	pid = fork();
 	if (pid == 0)
 	{
@@ -152,6 +192,7 @@ int	main(int argc, char **argv, char **env)
 		printf("This is the parent process. Child PID is: %d\n", pid);
 		wait(NULL); // Parent waits for the child to finish
 	}
+	printf("%s\n", absolute_path[0]);
 	// to do make wrapper func of open
 	// fd_from = open(argv[1], O_RDWR);
 	// fd_to = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
