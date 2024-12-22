@@ -9,7 +9,7 @@
 
 
 
-void ft_system_exit(t_info *info,int status)
+void system_exit(t_info *info,int status)
 {
     strs_free(info->env_path);
     //ft_btree_clear(info->root, );
@@ -31,12 +31,10 @@ t_info *system_init(char **env)
         {
             *env += strlen("PATH=");
             if (*env)
-            {
                 info->env_path = ft_split(env,' ');
                 //info->env_path = xsplit(env,' ',info);
-            }
-        }
         env++;
+        }
     }
     if (!info->env_path)
         info->env_path = xstrdup("",info);

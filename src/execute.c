@@ -1,4 +1,4 @@
-#include "system.h"
+#include "pipex.h"
 
 
 // int ast_traverse_dispather
@@ -8,30 +8,29 @@
 /*
 * CMDの処理はpreでもinでもどこでも大丈夫
 */
-t_status traverse_ast_nodes(t_btree *current_node)
+t_status traverse_ast_nodes(t_btree *current_node,t_info *info)
 {
   if (current_node == NULL)
     return 0;
   
-  t_status status;
   
   // プリフィックス処理
-  prefix_dispatcher(current_node);//pipeの準備
+  prefix_dispatcher(current_node, info);//pipeの準備
   
   // 左部分木を処理
-  status = traverse_ast_nodes(current_node->left);
+  traverse_ast_nodes(current_node->left,info);
   
   // インフィックス処理
-  if (infix_dispatcher(current_node, status))
-      return 0;//&&, || などの処理
+  if (infix_dispatcher(current_node, info))
+      return info->status;//&&, || などの処理 redirectが失敗したら右に行かないようにする
   
   // 右部分木を処理
-  status = traverse_ast_nodes(current_node->right);
+  traverse_ast_nodes(current_node->right,info);
   
   // サフィックス処理
-  suffix_dispatcher(current_node);//pipeのクローズなど
+  suffix_dispatcher(current_node,info);//pipeのクローズなど
   
-  return status;
+  return info->status;
 }
 
 

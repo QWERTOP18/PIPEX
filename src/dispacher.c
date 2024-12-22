@@ -1,40 +1,40 @@
-#include "system.h"
+#include "pipex.h"
 
 
-void prefix_dispatcher(t_btree *current_node)
+void prefix_dispatcher(t_btree *current_node,t_info *info)
 {
     const t_node *item = current_node->item;
     if (item->e_type ==TOKEN_PIPE)
     {
-        setup_pipe(item->u_val.pipefds);
-    }
-    if (item->e_type == TOKEN_REDIRECT)
-    {
-        process_redirect_node(item->u_val.args);
+        setup_pipe(item->u_val.pipefds, info);
     }
 }
 
-void suffix_dispatcher(t_btree *current_node)
+void suffix_dispatcher(t_btree *current_node,t_info *info)
 {
     const t_node *item = current_node->item;
     if (item->e_type ==TOKEN_PIPE)
     {
-        cleanup_pipe(item->u_val.pipefds);
+        cleanup_pipe(item->u_val.pipefds,info);
     }
     if (item->e_type ==TOKEN_CMD)
     {
-        process_cmd_node(item->u_val.args);
+        process_cmd_node(item->u_val.argv,info);
     }
 }
 
-int infix_dispatcher(t_btree *current_node, t_status status)
+int infix_dispatcher(t_btree *current_node, t_info *info)
 {
-  const t_node *item = current_node->item;
-  if (item->e_type ==TOKEN_EOF)
-  {
-    return 1;
-  }
+    const t_node *item = current_node->item;
+    if (item->e_type ==TOKEN_EOF)
+    {
+        return 1;
+    }
+    if (item->e_type >> REDIRECT & 1)
+    {
+        return process_redir_node(item, info);
+    }
 
-  return 0;
+    return 0;
 }
   

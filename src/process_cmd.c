@@ -1,5 +1,4 @@
-#include "libft.h"
-#include "system.h"
+#include "pipex.h"
 
 
 
@@ -9,13 +8,14 @@ void process_cmd_node(char **argv, t_info *info)
     //　　変数展開　絶対パスの取得(access OK)
     if (!argv || !*argv)
         return;
+
     char path[PATH_MAX];
-    if (fetch_absolutepath(path,argv[0], info->env_path, X_OK))
+    if (fetch_absolutepath(path, argv[0], info->env_path, X_OK))
     {
         perror(argv[0]);//bash: argv[0]: command not found
         return;
     }
-    pid_t pid = fork();
+    pid_t pid = xfork(info);
     if (pid == -1)
     {
         perror("fork");

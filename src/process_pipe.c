@@ -1,6 +1,5 @@
 
-#include "system.h"
-
+#include "pipex.h"
 
 
 void setup_pipe(int pipefds[],t_info *info)
@@ -10,10 +9,12 @@ void setup_pipe(int pipefds[],t_info *info)
         perror("pipe");
         system_exit(info, errno);
     }
+    info->pipefds[0] = pipefds[0];
+    info->pipefds[1] = pipefds[1];
 }
 void cleanup_pipe(int pipefds[],t_info *info)
 {
     // Close the write end of the pipe
-    close(pipefds[1]);
-    close(pipefds[2]);
+    xclose(&pipefds[1]);
+    xclose(&pipefds[2]);
 }
