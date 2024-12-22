@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:48 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 14:31:00 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 15:29:38 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	prefix_dispatcher(t_btree *current_node, t_info *info)
 {
-	const t_node	*item = current_node->item;
+	const t_item	*item = current_node->item;
 
 	if (item->e_type == TOKEN_PIPE)
 	{
@@ -25,7 +25,7 @@ void	prefix_dispatcher(t_btree *current_node, t_info *info)
 
 void	suffix_dispatcher(t_btree *current_node, t_info *info)
 {
-	const t_node	*item = current_node->item;
+	const t_item	*item = current_node->item;
 
 	if (item->e_type == TOKEN_PIPE)
 	{
@@ -39,7 +39,7 @@ void	suffix_dispatcher(t_btree *current_node, t_info *info)
 
 int	infix_dispatcher(t_btree *current_node, t_info *info)
 {
-	const t_node	*item = current_node->item;
+	const t_item	*item = current_node->item;
 
 	if (item->e_type == TOKEN_EOF)
 	{

@@ -6,40 +6,50 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:32 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 14:32:50 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 15:29:48 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "system.h"
-t_node	*ast_node_new(int token_type, void *val, t_info *info)
+t_item	*ast_item_new(int token_type, void *val, t_info *info)
 {
-	t_node	*new_node;
+	t_item	*new_item;
 
-	// t_node *new_node = xmalloc(sizeof(t_node),info);
-	new_node = malloc(sizeof(t_node));
-	new_node->e_type = token_type;
+	// t_item *new_item = xmalloc(sizeof(t_item),info);
+	new_item = malloc(sizeof(t_item));
+	new_item->e_type = token_type;
 	if (token_type == TOKEN_PIPE)
 	{
-		new_node->u_val.pipefds[0] = -1;
-		new_node->u_val.pipefds[1] = -1;
+		new_item->u_val.pipefds[0] = -1;
+		new_item->u_val.pipefds[1] = -1;
 	}
 	else if (token_type == TOKEN_CMD)
 	{
-		new_node->u_val.argv = ft_split((char *)val, ' ');
+		new_item->u_val.argv = ft_split((char *)val, ' ');
 	}
 	else if (token_type >> REDIRECT & 1)
 	{
-		new_node->u_val.file = (char *)val;
+		new_item->u_val.file = (char *)val;
 	}
 	// else if (token_type == TOKEN_EOF)
 	// {
-	// 	new_node->u_val.argv = NULL;
+	// 	new_item->u_val.argv = NULL;
 	// }
+	return (new_item);
+}
+
+t_btree	*ast_node_new(t_item *item, t_btree *left, t_btree *right)
+{
+	t_btree	*new_node;
+
+	new_node = ft_btree_new(item);
+	new_node->left = left;
+	new_node->right = right;
 	return (new_node);
 }
 
-t_btree	*parse_command_line(int argc, har **argv, t_info *info)
+t_btree	*parse_command_line(int argc, char **argv, t_info *info)
 {
 	t_node	*root;
 

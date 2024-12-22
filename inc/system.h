@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:22 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 11:42:25 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 15:28:47 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <string.h>
 # include <unistd.h>
 
+# ifndef PATH_MAX
+#  define PATH_MAX = 1024
+# endif
 typedef enum e_status
 {
 	E_NONE,
@@ -37,8 +40,8 @@ typedef struct s_info
 	// void		(*__exit)(void *, int);
 	int			pipefds[2];
 }				t_info;
-
-typedef struct s_node
+# define REDIRECT 4
+typedef struct s_item
 {
 	// t_type type;
 	enum
@@ -46,10 +49,10 @@ typedef struct s_node
 		TOKEN_CMD,
 		TOKEN_PIPE,
 		TOKEN_EOF,
-		TOKEN_REDIR_IN,
-		TOKEN_REDIR_OUT,
-		TOKEN_REDIR_APPEND,
-		TOKEN_REDIR_HEREDOC,
+		TOKEN_REDIR_IN = 0b010000,
+		TOKEN_REDIR_OUT = 0b010001,
+		TOKEN_REDIR_APPEND = 0b010010,
+		TOKEN_REDIR_HEREDOC = 0b010011,
 		// TOKEN_ARGS,
 		TOKEN_REDIRECT,
 	} e_type;
@@ -60,6 +63,6 @@ typedef struct s_node
 		char	*file;
 		int		pipefds[2];
 	} u_val;
-}				t_node;
+}				t_item;
 
 #endif

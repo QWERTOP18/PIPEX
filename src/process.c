@@ -6,11 +6,10 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:42 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 14:30:46 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 14:39:42 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
 #include "system.h"
 
 // int ast_traverse_dispather
