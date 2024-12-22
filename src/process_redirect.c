@@ -6,11 +6,12 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:54 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 13:49:22 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 14:32:35 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "system.h"
 
 int	process_redir_node(t_node *node, t_info *info)
 {

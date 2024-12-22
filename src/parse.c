@@ -6,12 +6,12 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:32 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 13:08:38 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 14:32:50 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
+#include "system.h"
 t_node	*ast_node_new(int token_type, void *val, t_info *info)
 {
 	t_node	*new_node;
@@ -37,6 +37,13 @@ t_node	*ast_node_new(int token_type, void *val, t_info *info)
 	// 	new_node->u_val.argv = NULL;
 	// }
 	return (new_node);
+}
+
+t_btree	*parse_command_line(int argc, har **argv, t_info *info)
+{
+	t_node	*root;
+
+	root = ast_node_new(TOKEN_EOF, NULL);
 }
 
 #define TEST_PARSE 1

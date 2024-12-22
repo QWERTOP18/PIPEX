@@ -6,11 +6,12 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:45 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 10:16:46 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 14:32:47 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "system.h"
 
 void	process_cmd_node(char **argv, t_info *info)
 {

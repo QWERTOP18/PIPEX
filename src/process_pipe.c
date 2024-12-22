@@ -6,11 +6,12 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:52 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 10:45:03 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 14:29:55 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "system.h"
 
 void	setup_pipe(int pipefds[], t_info *info)
 {
