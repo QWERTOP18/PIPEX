@@ -23,6 +23,8 @@ t_info *system_init(char **env)
         exit(E_ALLOCATE);
     memset(info,0,sizeof(t_info));
     //info->__exit = ft_system_exit;
+    info->pipefds[0] = -1;
+    info->pipefds[1] = -1;
     info->env = env;
     info->root = btree_create_node(NULL);
     while (env && *env)

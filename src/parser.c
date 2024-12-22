@@ -1,10 +1,5 @@
 #include "pipex.h"
 
-
-
-
-
-
 t_node *ast_node_new(int token_type, void * val, t_info *info)
 {
     //t_node *new_node = xmalloc(sizeof(t_node),info);
