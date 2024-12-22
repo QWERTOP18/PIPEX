@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:32 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 15:29:48 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/22 20:03:57 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,25 @@ t_item	*ast_item_new(int token_type, void *val, t_info *info)
 	return (new_item);
 }
 
-t_btree	*ast_node_new(t_item *item, t_btree *left, t_btree *right)
+t_btree	*ast_node_cmd_new(char *arg)
+{
+	t_btree	*new_node;
+
+	new_node = ft_btree_new(item);
+	return (new_node);
+}
+
+t_btree	*ast_node_pipe_new(char *arg, t_btree *left, t_btree *right)
+{
+	t_btree	*new_node;
+
+	new_node = ft_btree_new(item);
+	new_node->left = left;
+	new_node->right = right;
+	return (new_node);
+}
+
+t_btree	*ast_node_eof_new(char *arg, t_btree *left, t_btree *right)
 {
 	t_btree	*new_node;
 
@@ -51,9 +69,9 @@ t_btree	*ast_node_new(t_item *item, t_btree *left, t_btree *right)
 
 t_btree	*parse_command_line(int argc, char **argv, t_info *info)
 {
-	t_node	*root;
+	t_btree	*root;
 
-	root = ast_node_new(TOKEN_EOF, NULL);
+	root = ast_node_new(TOKEN_EOF, NULL, NULL);
 }
 
 #define TEST_PARSE 1
