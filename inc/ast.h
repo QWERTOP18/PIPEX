@@ -16,40 +16,26 @@
 #include <sys/types.h>
 #include <unistd.h>
 # define REDIRECT 4
-typedef struct s_item
+typedef enum e_type
 {
-	// t_type type;
-	enum
-	{
-		TOKEN_CMD,
-		TOKEN_PIPE,
-		TOKEN_EOF,
-		TOKEN_REDIR_IN = 0b010000,
-		TOKEN_REDIR_OUT = 0b010001,
-		TOKEN_REDIR_APPEND = 0b010010,
-		TOKEN_REDIR_HEREDOC = 0b010011,
-		// TOKEN_ARGS,
-		TOKEN_REDIRECT,
-	} e_type;
-	union
-	{
-		int		openfds;
-		char	**argv;
-		char	*file;
-		int		pipefds[2];
-	} u_val;
-}				t_item;
+	TOKEN_CMD,
+	TOKEN_BUILDIN,
+	TOKEN_PIPE,
+	TOKEN_EOF,
+	TOKEN_REDIR_IN = 0b10000,
+	TOKEN_HEREDOC = 0b10001,
+	TOKEN_REDIR_OUT = 0b10010,
+	TOKEN_REDIR_APPEND = 0b10011,
+} t_type;
 
 
 
-
-
-typedef struct s_pid_list
-{
-    pid_t pid;
-    struct s_pid_list *next;
-} t_pid_list;
-
+typedef struct s_ast {
+    struct t_ast *left;
+    struct t_ast *right;
+	t_type type;
+    char *argv;
+} t_ast;
 
 
 

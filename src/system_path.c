@@ -17,10 +17,10 @@ int	fetch_absolutepath(char path[], char *src, char **env_path, int mode)
 {
 	char temp_path[PATH_MAX];
 	if (src[0] == '/')
-	[
+	{
 		ft_strlcpy(path, src, PATH_MAX);
         return (access(path,mode));
-	]
+    }
 	while (*env_path)
 	{
 		ft_strlcpy(temp_path, path, PATH_MAX);

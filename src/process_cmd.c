@@ -13,10 +13,13 @@
 #include "pipex.h"
 #include "system.h"
 
-void	process_cmd_node(char **argv, t_info *info)
+void	process_cmd_node(t_ast *node,int pipefds[],  t_info *info)
 {
 	// 引数をパース
 	//　　変数展開　絶対パスの取得(access OK)
+    if (process_redir_node(node->left, pipefds, info))
+        return;
+    char **argv = node->u_val.argv;
 	if (!argv || !*argv)
 		return ;
 
@@ -41,6 +44,8 @@ void	process_cmd_node(char **argv, t_info *info)
 	}
 	else //親プロセス
 	{
-		// ft_strs_clear(argv);後でまとめて解放
+		ft_strs_clear(argv);//後でまとめて解放
+        close(pipefds[0]);
+        // dup2(pipefds[1], STDOUT_FILENO);
 	}
 }
