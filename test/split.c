@@ -63,7 +63,7 @@ char	**ft_split(char const *s, char c)
 {
 	int		i;
 	char	**dest;
-
+    printf("split");
 	if (s == NULL)
 		return (NULL);
 	dest = malloc(sizeof(char *) * (ft_split_count(s, c) + 1));

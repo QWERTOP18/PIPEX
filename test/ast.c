@@ -6,13 +6,6 @@ void error_exit(const char *message)
     exit(EXIT_FAILURE);
 }
 
-void *ft_calloc(size_t count, size_t size) 
-{
-    void *ptr = calloc(count, size);
-    if (!ptr)
-        error_exit("ft_calloc");
-    return ptr;
-}
 t_ast *astnew_node(int type, char *argv) 
 {
     t_ast *new_node = ft_calloc(1, sizeof(t_ast));
@@ -26,7 +19,8 @@ t_ast *ast_new(char **argv)
     t_ast *root_node = astnew_node(TOKEN_PIPE, NULL);
     t_ast *current_node = root_node;
 
-    while (*argv != NULL) {
+    while (*argv != NULL)
+    {
         current_node->left = astnew_node(TOKEN_CMD,*argv++);
         if (*argv)
             current_node->right = astnew_node(TOKEN_PIPE, NULL);
@@ -43,7 +37,7 @@ void ast_clear(t_ast *node)
 
     if (node->args)
     {
-        ft_split_free(node->args);
+        ft_strs_clear(node->args);
     }
     free(node);
 }
