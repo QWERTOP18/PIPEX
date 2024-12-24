@@ -45,4 +45,6 @@ typedef struct s_info
 
 void system_exit(t_info *info,int status);
 t_info *system_init(char **env);
+
+int	fetch_absolutepath(char path[], char *src, char **env_path, int mode);
 #endif

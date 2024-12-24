@@ -17,7 +17,11 @@ pid_t process_cmd(t_ast *node, int in_fd, int out_fd, t_info *info) {
             dup2(out_fd, STDOUT_FILENO);  // 標準出力をout_fdにリダイレクト
             xclose(&out_fd);
         }
-        if (execve(node->args[0], node->args, info->env) == -1)
+        char path[PATH_MAX];
+        write(2, "aaa", 3);
+        int acsees_ok = fetch_absolutepath(path, *node->args,info->env_path,X_OK); //
+        fprintf(stderr, "node->%s\n", path);
+        if (execve(path, node->args, info->env) == -1)
         {
             printf("pipex: %s: %s" ,node->args[0],strerror(errno));
             exit(EXIT_FAILURE);

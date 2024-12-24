@@ -23,7 +23,7 @@ void	system_exit(t_info *info, int status)
 	xclose(&info->fd_out);
 	ft_strs_clear(info->env_path);
 	ast_clear(info->root);
-	unlink(HEREDOC);
+	// unlink(HEREDOC);
 	exit(status);
 }
 
@@ -41,7 +41,7 @@ t_info	*system_init(char **env)
 		{
 			*env += strlen("PATH=");
 			if (*env)
-				info->env_path = ft_split(*env, ' ');
+				info->env_path = ft_split(*env, ':');
 			break ;
 		}
 		env++;
