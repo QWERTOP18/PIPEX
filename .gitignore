@@ -3,4 +3,5 @@
 infile 
 outfile
 *.outfile
+*.out
 pipex
