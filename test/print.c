@@ -6,11 +6,11 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:38:33 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 15:38:34 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 17:47:29 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
+#include "system.h"
 
 void	print_ast(t_ast *node, int depth)
 {

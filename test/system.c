@@ -6,11 +6,10 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:57 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 16:34:45 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 17:47:14 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
 #include "system.h"
 #include <string.h> //debug
 
@@ -28,7 +27,7 @@ void	system_exit(t_info *info, int status)
 
 t_info	*system_init(char **env)
 {
-	printf("system_initn");
+	printf("system_initn\n");
 	t_info *info = ft_calloc(1, sizeof(t_info));
 	if (!info)
 		exit(E_ALLOCATE);

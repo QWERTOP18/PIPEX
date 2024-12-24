@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:38:23 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 16:29:53 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 17:37:54 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	build(int argc, char **argv, t_info *info)
 	printf("Abstract Syntax Tree:\n");
 	print_ast(tree, 0);
 	printf("\nExecuting command pipeline:\n");
-	exec_pipe(tree, info->fd_in, info->fd_out, info); // 最初は標準入力を渡さない
-	system_exit(info, 0);                             // 正常終了したら終了する
+	process_pipe(tree, info->fd_in, info->fd_out, info); // 最初は標準入力を渡さない
+	system_exit(info, 0);                                // 正常終了したら終了する
 }
 
 int	main(int argc, char **argv, char **env)
@@ -36,8 +36,8 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	}
 	printf("main\n");
-	printf("main\n");
 	info = system_init(env);
+	printf("main\n");
 	printf("%s\n", env[0]);
 	if (ft_strncmp(argv[1], "heredoc", ft_strlen(argv[1]) == 0))
 	{

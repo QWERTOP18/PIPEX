@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:38:49 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 16:31:40 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 17:39:19 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,13 @@ pid_t	process_cmd(t_ast *node, int in_fd, int out_fd, t_info *info)
 }
 
 // ASTを基にパイプラインを実行する関数
-void	exec_pipe(t_ast *node, int in_fd, int out_fd, t_info *info)
+void	process_pipe(t_ast *node, int in_fd, int out_fd, t_info *info)
 {
 	int	pipefds[2];
 
 	printf("Process PIPE\n\n");
-	if (!node || in_fd < 0 || out_fd < 0)
-	{
+	if (!node)
 		return ;
-	}
 	if (node->type == TOKEN_PIPE)
 	{
 		if (node->right != NULL)
@@ -77,16 +75,13 @@ void	exec_pipe(t_ast *node, int in_fd, int out_fd, t_info *info)
 				exit(EXIT_FAILURE);
 			}
 			process_cmd(node->left, in_fd, pipefds[1], info);
-			// 標準入力をin_fdから、出力をpipefds[1]にリダイレクト
-			close(pipefds[1]);                                // 書き込み端を閉じる
-			exec_pipe(node->right, pipefds[0], out_fd, info); // 次のコマンドにパイプを渡す
+			close(pipefds[1]);
+			process_pipe(node->right, pipefds[0], out_fd, info);
 		}
 		else
 		{
-			// 最後のコマンドの場合
 			waitpid(process_cmd(node->left, in_fd, out_fd, info), NULL, 0);
-			// 最後のコマンドは標準出力にリダイレクトしない
-			close(in_fd); //
+			close(in_fd);
 		}
 	}
 }
