@@ -17,9 +17,6 @@ void	build(int argc, char **argv, t_info *info)
 {
 	argv[argc - 1] = NULL;
 	info->root = ast_new(&argv[2], info);
-	printf("Abstract Syntax Tree:\n");
-	print_ast(info->root, 0);
-	printf("\nExecuting command pipeline:\n");
 	/*execute!!!*/
 	process_pipe(info->root, info->fd_in, info->fd_out, info);
 }
@@ -46,7 +43,6 @@ int	main(int argc, char **argv, char **env)
 		info->fd_out = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0666);
 	}
 	build(argc, argv, info);
-	printf("build done\n");
 	system_exit(info, 0);
 	return (0);
 }

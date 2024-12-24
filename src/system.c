@@ -54,5 +54,6 @@ t_info	*system_init(char **env)
 
 void	process_exit(void)
 {
+	ft_putstr_fd(ERRCMD,2);
 	exit(EXIT_FAILURE);
 }

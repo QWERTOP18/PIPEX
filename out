@@ -1,0 +1,12 @@
+total 88
+drwxr-xr-x@ 11 yui  staff    352 12 24 23:49 .
+drwx------@ 20 yui  staff    640 12 23 19:07 ..
+drwxr-xr-x@ 15 yui  staff    480 12 24 23:25 .git
+-rw-r--r--   1 yui  staff     49 12 24 23:16 .gitignore
+drwxr-xr-x   3 yui  staff     96 12 21 00:52 .vscode
+-rw-r--r--   1 yui  staff   1117 12 24 23:38 Makefile
+drwxr-xr-x  85 yui  staff   2720 12 24 23:31 libft
+drwxr-xr-x  16 yui  staff    512 12 24 23:49 obj
+-rw-r--r--   1 yui  staff      0 12 24 23:49 out
+-rwxr-xr-x   1 yui  staff  35784 12 24 23:49 pipex
+drwxr-xr-x  13 yui  staff    416 12 24 23:31 src

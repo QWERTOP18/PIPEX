@@ -12,7 +12,7 @@
 
 #ifndef SYSTEM_H
 # define SYSTEM_H
-# include "../util/libft/libft.h"
+# include "libft.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
