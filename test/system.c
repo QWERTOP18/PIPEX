@@ -6,19 +6,18 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:57 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 11:43:57 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 16:34:45 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "system.h"
-#include "xunistd.h"
 #include "ast.h"
+#include "system.h"
 #include <string.h> //debug
 
 void	system_exit(t_info *info, int status)
-{	
-
-    while (wait(NULL) > 0);
+{
+	while (wait(NULL) > 0)
+		;
 	xclose(&info->fd_in);
 	xclose(&info->fd_out);
 	ft_strs_clear(info->env_path);
@@ -29,7 +28,8 @@ void	system_exit(t_info *info, int status)
 
 t_info	*system_init(char **env)
 {
-	t_info *info = ft_calloc(1,sizeof(t_info));
+	printf("system_initn");
+	t_info *info = ft_calloc(1, sizeof(t_info));
 	if (!info)
 		exit(E_ALLOCATE);
 	info->env = env;
@@ -40,8 +40,9 @@ t_info	*system_init(char **env)
 		if (strncmp(*env, "PATH=", strlen("PATH=")) == 0)
 		{
 			*env += strlen("PATH=");
+			printf("PATH=%s", *env);
 			if (*env)
-				info->env_path = ft_split(*env, ':');
+				info->env_path = NULL; // ft_split(*env, ':');
 			break ;
 		}
 		env++;

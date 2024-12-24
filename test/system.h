@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:22 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 18:46:50 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 16:32:37 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
-#define HEREDOC "THIS_FILE_SAHLLNOT_EXIST"
+# define HEREDOC "THIS_FILE_SAHLLNOT_EXIST"
 # ifndef PATH_MAX
 #  define PATH_MAX = 1024
 # endif
@@ -30,21 +30,28 @@ typedef enum e_status
 	E_FATAL,
 	E_ALLOCATE,
 
-} t_status;
-
+}				t_status;
 
 typedef struct s_info
 {
-    t_status status;
-    t_ast *root;
-    char **env;
-    char **env_path;
-    int fd_in;
-    int fd_out;
-}t_info;
+	t_status	status;
+	t_ast		*root;
+	char		**env;
+	char		**env_path;
+	int			fd_in;
+	int			fd_out;
+}				t_info;
 
-void system_exit(t_info *info,int status);
-t_info *system_init(char **env);
+void			system_exit(t_info *info, int status);
+t_info			*system_init(char **env);
 
-int	fetch_absolutepath(char path[], char *src, char **env_path, int mode);
+int				fetch_absolutepath(char path[], char *src, char **env_path,
+					int mode);
+
+/**** **** **eXtended library ** **** ****/
+void			xfree(void **ptr);
+int				xclose(int *fd);
+void			xpipe(int pipfds[], t_info *info);
+pid_t			xfork(t_info *info);
+void			*xmalloc(size_t size, t_info *info);
 #endif

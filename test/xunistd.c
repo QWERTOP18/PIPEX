@@ -6,28 +6,11 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:17:26 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/22 14:39:15 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 15:36:50 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "system.h"
-#include "xunistd.h"
-
-// t_btree *ftx_btree_create_node(void *item, void *sys_info)
-// {
-//     t_btree *node;
-//     t_info *info = (t_info *)sys_info;
-
-//     node = ft_btree_create_node(item);
-//     if (!node)
-//     {
-//         if (info && info->__exit)
-//         {
-//             info->__exit(info, E_ALLOCATE);
-//         }
-//     }
-//     return (node);
-// }
 
 pid_t	xfork(t_info *info)
 {
@@ -39,7 +22,7 @@ pid_t	xfork(t_info *info)
 		perror("fork");
 		system_exit(info, errno);
 	}
-	return (pid); // 子プロセスは0、親プロセスは子プロセスIDを返す
+	return (pid);
 }
 
 void	*xmalloc(size_t size, t_info *info)
