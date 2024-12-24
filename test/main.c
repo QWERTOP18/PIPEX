@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:38:23 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 18:28:32 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:11:54 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 
 void	build(int argc, char **argv, t_info *info)
 {
-	t_ast	*tree;
-
 	argv[argc - 1] = NULL;
-	tree = ast_new(&argv[2], info);
+	info->root = ast_new(&argv[2], info);
 	printf("Abstract Syntax Tree:\n");
-	print_ast(tree, 0);
+	print_ast(info->root, 0);
 	printf("\nExecuting command pipeline:\n");
 	/*execute!!!*/
-	process_pipe(tree, info->fd_in, info->fd_out, info);
-	system_exit(info, 0);
+	process_pipe(info->root, info->fd_in, info->fd_out, info);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -49,6 +46,7 @@ int	main(int argc, char **argv, char **env)
 		info->fd_out = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0666);
 	}
 	build(argc, argv, info);
+	printf("build done\n");
 	system_exit(info, 0);
 	return (0);
 }

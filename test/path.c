@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:17:23 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 18:17:27 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:08:31 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	fetch_absolutepath(char path[], char *src, char **env_path, int mode)
 	{
 		return (access(path, mode));
 	}
-	printf("Fetching absolute path\n");
 	while (*env_path)
 	{
 		ft_strlcpy(temp_path, *env_path, PATH_MAX);

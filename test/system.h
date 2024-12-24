@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:22 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 18:21:40 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:02:43 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_info
 	int				fd_out;
 }					t_info;
 
+void				process_exit(void);
 void				system_exit(t_info *info, int status);
 t_info				*system_init(char **env);
 int					fetch_absolutepath(char path[], char *src, char **env_path,

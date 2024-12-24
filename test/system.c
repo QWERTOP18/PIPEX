@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:57 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 18:13:26 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:12:46 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ void	system_exit(t_info *info, int status)
 	xclose(&info->fd_out);
 	ft_strs_clear(info->env_path);
 	ast_clear(info->root);
-	// unlink(HEREDOC);
+	free(info);
 	exit(status);
 }
 
 t_info	*system_init(char **env)
 {
-	t_info *info = ft_calloc(1, sizeof(t_info));
+	t_info	*info;
+
+	info = ft_calloc(1, sizeof(t_info));
 	if (!info)
 		exit(E_ALLOCATE);
 	info->env = env;
@@ -46,6 +48,10 @@ t_info	*system_init(char **env)
 	}
 	// if (!info->env_path)
 	// 	info->env_path = ft_strdup("");
-
 	return (info);
+}
+
+void	process_exit(void)
+{
+	exit(EXIT_FAILURE);
 }

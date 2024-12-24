@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:38:49 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 18:23:34 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:08:25 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,55 +16,32 @@ pid_t	process_cmd(t_ast *node, int in_fd, int out_fd, t_info *info)
 {
 	pid_t	pid;
 	char	path[PATH_MAX];
-	int		access_ok;
-	int		degugfd;
 
-	printf("Process CMD\n\n");
-	write(1, "\n\n\n", 3);
-	degugfd = open("debug_out", O_RDWR | O_CREAT | O_APPEND | 0777);
-	pid = fork();
+	pid = xfork(info);
 	if (pid == 0)
 	{
-		// 子プロセス
-		printf("child in:  %d out:  %d\n", in_fd, out_fd);
 		if (in_fd != -1)
 		{
-			dup2(in_fd, STDIN_FILENO); // 標準入力をin_fdにリダイレクト
+			dup2(in_fd, STDIN_FILENO);
 			xclose(&in_fd);
 		}
 		if (out_fd != -1)
 		{
-			dup2(out_fd, STDOUT_FILENO); // 標準出力をout_fdにリダイレクト
+			dup2(out_fd, STDOUT_FILENO);
 			xclose(&out_fd);
 		}
-		access_ok = fetch_absolutepath(path, *node->args, info->env_path, X_OK);
-		printf("path %s\n", path);
-		if (execve(path, node->args, info->env) == -1)
-		{
-			printf("pipex: %s: %s", node->args[0], strerror(errno));
-			exit(EXIT_FAILURE);
-		}
+		if (fetch_absolutepath(path, *node->args, info->env_path, X_OK))
+			process_exit();
+		execve(path, node->args, info->env);
+		process_exit();
 	}
-	else if (pid > 0)
-	{
-		// 親プロセス
-		printf("Process %d %s\n", pid, node->args[0]);
-		return (pid);
-	}
-	else
-	{
-		perror("fork");
-		exit(EXIT_FAILURE);
-	}
-	return (-1); // ここには来ない
+	return (pid);
 }
 
-// ASTを基にパイプラインを実行する関数
 void	process_pipe(t_ast *node, int in_fd, int out_fd, t_info *info)
 {
 	int	pipefds[2];
 
-	printf("Process PIPE\n\n");
 	if (!node)
 		return ;
 	if (node->type == TOKEN_PIPE)
@@ -83,7 +60,7 @@ void	process_pipe(t_ast *node, int in_fd, int out_fd, t_info *info)
 		else
 		{
 			waitpid(process_cmd(node->left, in_fd, out_fd, info), NULL, 0);
-			close(in_fd);
+			close(in_fd); //どちらをcloseするべきか
 		}
 	}
 }
