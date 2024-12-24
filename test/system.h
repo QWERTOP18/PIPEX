@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:22 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 19:16:33 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:22:45 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_info
 	char			**env_path;
 	int				fd_in;
 	int				fd_out;
+	int				final_out;
 }					t_info;
 
 void				process_exit(void);

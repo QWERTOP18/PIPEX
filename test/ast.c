@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:39:02 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 19:15:47 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:17:37 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_ast	*ast_new(char **argv, t_info *info)
 
 void	ast_clear(t_ast *node)
 {
-	printf("%s%p\n", __func__, node);
 	if (!node)
 		return ;
 	ast_clear(node->left);

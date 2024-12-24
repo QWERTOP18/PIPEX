@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:57 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 19:16:04 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:23:10 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_info	*system_init(char **env)
 	info->env = env;
 	info->fd_in = -1;
 	info->fd_out = -1;
+	info->final_out = -1;
 	while (env && *env)
 	{
 		if (strncmp(*env, "PATH=", strlen("PATH=")) == 0)

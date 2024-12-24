@@ -1,0 +1,15 @@
+total 116$
+-rwxr-xr-x 1 ymizukam 2024_tokyo 22448 12M-fM-^\M-^H 24 19:25 a.out$
+-rw-r--r-- 1 ymizukam 2024_tokyo  1677 12M-fM-^\M-^H 24 19:17 ast.c$
+-rw-r--r-- 1 ymizukam 2024_tokyo  1908 12M-fM-^\M-^H 24 19:14 exec.c$
+-rw-r--r-- 1 ymizukam 2024_tokyo  1022 12M-fM-^\M-^H 24 19:14 exec.h$
+-rw-r--r-- 1 ymizukam 2024_tokyo    18 12M-fM-^\M-^H 24 19:24 infile$
+-rw-r--r-- 1 ymizukam 2024_tokyo 45716 12M-fM-^\M-^H 24 19:14 libft.a$
+-rw-r--r-- 1 ymizukam 2024_tokyo  1861 12M-fM-^\M-^H 24 19:14 main.c$
+-rw-r--r-- 1 ymizukam 2024_tokyo     0 12M-fM-^\M-^H 24 19:25 out$
+-rw-r--r-- 1 ymizukam 2024_tokyo  1407 12M-fM-^\M-^H 24 19:14 path.c$
+-rw-r--r-- 1 ymizukam 2024_tokyo  1479 12M-fM-^\M-^H 24 19:14 print.c$
+-rw-r--r-- 1 ymizukam 2024_tokyo  1668 12M-fM-^\M-^H 24 19:23 system.c$
+-rw-r--r-- 1 ymizukam 2024_tokyo  2417 12M-fM-^\M-^H 24 19:22 system.h$
+-rwxr-xr-x 1 ymizukam 2024_tokyo   293 12M-fM-^\M-^H 24 19:25 test.sh$
+-rw-r--r-- 1 ymizukam 2024_tokyo  1619 12M-fM-^\M-^H 24 19:14 xunistd.c$
