@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:22 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 17:47:18 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 18:21:40 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 # include <limits.h>
 # include <stdio.h>
 # include <string.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
-# define HEREDOC "THIS_FILE_SAHLLNOT_EXIST"
 # ifndef PATH_MAX
 #  define PATH_MAX = 1024
 # endif
+
+# define ERRCMD "command not found"
+# define ERRDIR "Is a directory"
 
 # define TOKEN_CMD 1
 # define TOKEN_PIPE 2
@@ -57,12 +61,14 @@ void				system_exit(t_info *info, int status);
 t_info				*system_init(char **env);
 int					fetch_absolutepath(char path[], char *src, char **env_path,
 						int mode);
+
 /**** **** **** **** **** **** **** **** ****/
 /**** **** **** *AST  library* **** **** ****/
 /**** **** **** **** **** **** **** **** ****/
 t_ast				*ast_new(char **argv, t_info *info);
 void				ast_clear(t_ast *node);
 void				print_ast(t_ast *node, int depth);
+
 /**** **** **** **** **** **** **** **** ****/
 /**** **** **  eXtended library  ** **** ****/
 /**** **** **** **** **** **** **** **** ****/

@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:57 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 17:47:14 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 18:13:26 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	system_exit(t_info *info, int status)
 
 t_info	*system_init(char **env)
 {
-	printf("system_initn\n");
 	t_info *info = ft_calloc(1, sizeof(t_info));
 	if (!info)
 		exit(E_ALLOCATE);
@@ -39,9 +38,8 @@ t_info	*system_init(char **env)
 		if (strncmp(*env, "PATH=", strlen("PATH=")) == 0)
 		{
 			*env += strlen("PATH=");
-			printf("PATH=%s", *env);
 			if (*env)
-				info->env_path = NULL; // ft_split(*env, ':');
+				info->env_path = ft_split(*env, ':');
 			break ;
 		}
 		env++;

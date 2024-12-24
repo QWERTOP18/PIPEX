@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:38:23 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 17:37:54 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 18:28:32 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ void	build(int argc, char **argv, t_info *info)
 	t_ast	*tree;
 
 	argv[argc - 1] = NULL;
-	tree = ast_new(&argv[2]);
+	tree = ast_new(&argv[2], info);
 	printf("Abstract Syntax Tree:\n");
 	print_ast(tree, 0);
 	printf("\nExecuting command pipeline:\n");
-	process_pipe(tree, info->fd_in, info->fd_out, info); // 最初は標準入力を渡さない
-	system_exit(info, 0);                                // 正常終了したら終了する
+	/*execute!!!*/
+	process_pipe(tree, info->fd_in, info->fd_out, info);
+	system_exit(info, 0);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -35,13 +36,10 @@ int	main(int argc, char **argv, char **env)
 		ft_putstr_fd("Usage: %s <input> <command> <command> ... <output>\n", 2);
 		return (1);
 	}
-	printf("main\n");
 	info = system_init(env);
-	printf("main\n");
-	printf("%s\n", env[0]);
 	if (ft_strncmp(argv[1], "heredoc", ft_strlen(argv[1]) == 0))
 	{
-		info->fd_in = open(HEREDOC, O_RDWR | O_TRUNC | O_CREAT, 0666);
+		// info->fd_in = open(HEREDOC, O_RDWR | O_TRUNC | O_CREAT, 0666);
 		info->fd_out = open(argv[argc - 1], O_WRONLY | O_APPEND | O_CREAT,
 				0666);
 	}

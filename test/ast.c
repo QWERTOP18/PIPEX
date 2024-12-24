@@ -6,17 +6,11 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:39:02 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 17:47:36 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 17:53:25 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "system.h"
-
-void	error_exit(const char *message)
-{
-	perror(message);
-	exit(EXIT_FAILURE);
-}
 
 t_ast	*astnew_node(int type, char *argv, t_info *info)
 {

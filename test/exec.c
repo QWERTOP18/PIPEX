@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:38:49 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 17:39:19 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 18:23:34 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ pid_t	process_cmd(t_ast *node, int in_fd, int out_fd, t_info *info)
 	pid_t	pid;
 	char	path[PATH_MAX];
 	int		access_ok;
+	int		degugfd;
 
 	printf("Process CMD\n\n");
+	write(1, "\n\n\n", 3);
+	degugfd = open("debug_out", O_RDWR | O_CREAT | O_APPEND | 0777);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -34,9 +37,8 @@ pid_t	process_cmd(t_ast *node, int in_fd, int out_fd, t_info *info)
 			dup2(out_fd, STDOUT_FILENO); // 標準出力をout_fdにリダイレクト
 			xclose(&out_fd);
 		}
-		write(2, "aaa", 3);
 		access_ok = fetch_absolutepath(path, *node->args, info->env_path, X_OK);
-		fprintf(stderr, "node->%s %d\n", path, access_ok);
+		printf("path %s\n", path);
 		if (execve(path, node->args, info->env) == -1)
 		{
 			printf("pipex: %s: %s", node->args[0], strerror(errno));
