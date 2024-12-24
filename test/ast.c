@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:39:02 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 19:09:53 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:15:47 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_ast	*ast_new(char **argv, t_info *info)
 	}
 	return (root_node);
 }
+
 void	ast_clear(t_ast *node)
 {
 	printf("%s%p\n", __func__, node);

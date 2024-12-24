@@ -6,12 +6,12 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:16:22 by ymizukam          #+#    #+#             */
-/*   Updated: 2024/12/24 19:02:43 by ymizukam         ###   ########.fr       */
+/*   Updated: 2024/12/24 19:16:33 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SYSTEM_H
-# define FT_SYSTEM_H
+#ifndef SYSTEM_H
+# define SYSTEM_H
 # include "../util/libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -44,7 +44,6 @@ typedef enum e_status
 	E_NONE,
 	E_FATAL,
 	E_ALLOCATE,
-
 }					t_status;
 
 typedef struct s_info
