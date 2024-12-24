@@ -9,7 +9,7 @@ LIBFT_DIR	:= $(ROOT_DIR)/libft
 LIBFT		:= $(LIBFT_DIR)/libft.a
 IDFLAGS		:= -I$(INCS_DIR) -I$(LIBFT_DIR)
 
-SRC_FILES	:= ast.c exec.c main.c path.c print.c system.c xunistd.c
+SRC_FILES	:= ast.c exec.c main.c path.c system.c xunistd.c heredoc.c
 SRCS		:= $(addprefix src/, $(SRC_FILES))
 
 OBJS		:= $(addprefix $(OUT_DIR)/, $(SRC_FILES:.c=.o))
@@ -54,6 +54,18 @@ norm:
 
 debug:
 	$(MAKE) DEBUG=1
+
+case1: $(NAME)
+	@$(ROOT_DIR)/$(NAME) "infile" "ls -l" "grep Make" "outfile"
+
+case2: $(NAME)
+	@$(ROOT_DIR)/$(NAME) "infile" "ls -l" "grep Make" "outfile"
+
+case3: $(NAME)
+	@$(ROOT_DIR)/$(NAME) "infile" "ls -l" "grep Make" "outfile"
+
+case4: $(NAME)
+	@$(ROOT_DIR)/$(NAME) "infile" "ls -l" "grep Make" "outfile"
 
 .PHONY: all clean fclean re initsub sub norm debug
 

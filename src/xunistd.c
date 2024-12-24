@@ -12,6 +12,22 @@
 
 #include "system.h"
 
+
+int xopen(const char *path, int oflag, int mode)
+{
+	int    fd;
+
+    fd = open(path, oflag, mode);
+    if (fd == -1)
+    {
+        ft_putstr_fd(PROGRAM,2);
+		ft_putstr_fd((char *)path,2);
+		ft_putstr_fd(": ",2);
+		ft_putstr_fd(strerror(errno),2);
+    }
+    return (fd);
+}
+
 pid_t	xfork(t_info *info)
 {
 	pid_t	pid;
@@ -23,20 +39,6 @@ pid_t	xfork(t_info *info)
 		system_exit(info, errno);
 	}
 	return (pid);
-}
-
-void	*xmalloc(size_t size, t_info *info)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (!ptr)
-	{
-		perror("malloc");
-		system_exit(info, errno);
-	}
-	ft_memset(ptr, 0, size);
-	return (ptr);
 }
 
 void	xpipe(int pipfds[], t_info *info)

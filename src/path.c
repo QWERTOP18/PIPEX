@@ -33,5 +33,5 @@ int	fetch_absolutepath(char path[], char *src, char **env_path, int mode)
 		}
 		env_path++;
 	}
-	return (1); // file not found
+	return (1);
 }

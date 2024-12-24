@@ -16,5 +16,6 @@
 # include "system.h"
 
 void	process_pipe(t_ast *node, int in_fd, int out_fd, t_info *info);
+int heredoc(t_info *info, const char *delimiter);
 
 #endif

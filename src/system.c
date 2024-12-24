@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "system.h"
-#include <string.h> //debug
+
 
 void	system_exit(t_info *info, int status)
 {
@@ -52,8 +52,24 @@ t_info	*system_init(char **env)
 	return (info);
 }
 
-void	process_exit(void)
+void	process_exit(char *file)
 {
+	ft_putstr_fd(PROGRAM,2);
+	ft_putstr_fd(file,2);
 	ft_putstr_fd(ERRCMD,2);
 	exit(EXIT_FAILURE);
+}
+
+void	*xmalloc(size_t size, t_info *info)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
+	{
+		perror("malloc");
+		system_exit(info, errno);
+	}
+	ft_memset(ptr, 0, size);
+	return (ptr);
 }

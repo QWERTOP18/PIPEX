@@ -31,9 +31,9 @@ pid_t	process_cmd(t_ast *node, int in_fd, int out_fd, t_info *info)
 			xclose(&out_fd);
 		}
 		if (fetch_absolutepath(path, *node->args, info->env_path, X_OK))
-			process_exit();
+			process_exit(*node->args);
 		execve(path, node->args, info->env);
-		process_exit();
+		process_exit(*node->args);
 	}
 	return (pid);
 }

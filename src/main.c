@@ -13,36 +13,34 @@
 #include "exec.h"
 #include "system.h"
 
-void	build(int argc, char **argv, t_info *info)
+void	build(char **argv, t_info *info)
 {
-	argv[argc - 1] = NULL;
-	info->root = ast_new(&argv[2], info);
-	/*execute!!!*/
+	info->root = ast_new(argv, info);
 	process_pipe(info->root, info->fd_in, info->fd_out, info);
+    system_exit(info, 0);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	t_info	*info;
-
+    const char *outfile = argv[argc - 1];
+    argv[argc - 1] = NULL;
+    argv++;
 	if (argc < 5)
 	{
 		ft_putstr_fd("Usage: %s <input> <command> <command> ... <output>\n", 2);
 		return (1);
 	}
 	info = system_init(env);
-	if (ft_strncmp(argv[1], "heredoc", ft_strlen(argv[1]) == 0))
+	if (ft_strncmp(*argv, "heredoc", ft_strlen(*argv) == 0))
 	{
-		// info->fd_in = open(HEREDOC, O_RDWR | O_TRUNC | O_CREAT, 0666);
-		info->fd_out = open(argv[argc - 1], O_WRONLY | O_APPEND | O_CREAT,
-				0666);
+		info->fd_out = xopen(outfile, O_WRONLY | O_APPEND | O_CREAT,0666);
+        info->fd_in = heredoc(info, *++argv);
+        build(++argv, info);
 	}
-	else
-	{
-		info->fd_in = open(argv[1], O_RDONLY);
-		info->fd_out = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0666);
-	}
-	build(argc, argv, info);
-	system_exit(info, 0);
+    info->fd_in = xopen(*argv, O_RDONLY, 0);
+	info->fd_out = xopen(outfile, O_WRONLY | O_TRUNC | O_CREAT, 0666);
+	build(++argv, info);
+	
 	return (0);
 }

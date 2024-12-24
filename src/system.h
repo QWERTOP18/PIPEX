@@ -25,8 +25,9 @@
 #  define PATH_MAX = 1024
 # endif
 
-# define ERRCMD "command not found"
-# define ERRDIR "Is a directory"
+# define PROGRAM "pipex: "
+# define ERRCMD ": command not found\n"
+# define ERRDIR ": Is a directory"
 
 # define TOKEN_CMD 1
 # define TOKEN_PIPE 2
@@ -57,7 +58,7 @@ typedef struct s_info
 	int				final_out;
 }					t_info;
 
-void				process_exit(void);
+void				process_exit(char *file);
 void				system_exit(t_info *info, int status);
 t_info				*system_init(char **env);
 int					fetch_absolutepath(char path[], char *src, char **env_path,
@@ -74,6 +75,7 @@ void				print_ast(t_ast *node, int depth);
 /**** **** **  eXtended library  ** **** ****/
 /**** **** **** **** **** **** **** **** ****/
 void				xfree(void **ptr);
+int xopen(const char *path, int oflag, int mode);
 int					xclose(int *fd);
 void				xpipe(int pipfds[], t_info *info);
 pid_t				xfork(t_info *info);
